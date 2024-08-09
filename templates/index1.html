@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bio Medical RAG App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            background-color: #f0f8ff; /* Light blue background for the body */
+            overflow: auto; /* Enable scrolling for the whole page */
+        }
+
+        /* Bubbles animation */
+        .bubble {
+            position: fixed;
+            bottom: -100px;
+            background-color: rgba(0, 123, 255, 0.2); /* Light blue bubbles */
+            border-radius: 50%;
+            z-index: -1;
+            animation: rise 15s infinite ease-in;
+        }
+        .bubble:nth-child(2) {
+            width: 80px;
+            height: 80px;
+            left: 20%;
+            animation-duration: 20s;
+            animation-delay: 3s;
+        }
+        .bubble:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            left: 50%;
+            animation-duration: 25s;
+            animation-delay: 5s;
+        }
+        .bubble:nth-child(4) {
+            width: 60px;
+            height: 60px;
+            left: 75%;
+            animation-duration: 22s;
+            animation-delay: 8s;
+        }
+        .bubble:nth-child(5) {
+            width: 120px;
+            height: 120px;
+            left: 30%;
+            animation-duration: 18s;
+            animation-delay: 12s;
+        }
+        .bubble:nth-child(6) {
+            width: 150px;
+            height: 150px;
+            left: 10%;
+            animation-duration: 30s;
+            animation-delay: 6s;
+        }
+        .bubble:nth-child(7) {
+            width: 70px;
+            height: 70px;
+            left: 40%;
+            animation-duration: 15s;
+            animation-delay: 9s;
+        }
+        .bubble:nth-child(8) {
+            width: 110px;
+            height: 110px;
+            left: 60%;
+            animation-duration: 27s;
+            animation-delay: 12s;
+        }
+
+        @keyframes rise {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-1500px) scale(1.5);
+                opacity: 0;
+            }
+        }
+        .chat-container {
+            max-width: 800px;
+            margin: 50px auto; /* Adjusted to move container down */
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white */
+            border-radius: 10px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            z-index: 1; /* Ensure it's above the bubbles */
+            position: relative;
+            max-height: 80vh; /* Limits the height of the container */
+            overflow-y: auto; /* Adds a vertical scrollbar if content overflows */
+        }
+        .chat-heading {
+            text-align: center;
+            font-size: 2.5em;
+            font-weight: 600;
+            margin-bottom: 30px;
+            color: #007bff; /* Bootstrap primary blue color */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .chat-heading img {
+            height: 50px;
+            width: auto;
+            vertical-align: middle;
+        }
+        .chat-input {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            height: 100px;
+            background-color: #f8f9fa; /* Light grey background */
+            color: #333;
+            border: 1px solid #ced4da; /* Light grey border */
+            border-radius: 5px;
+        }
+        .chat-button {
+            background-color: #007bff; /* Bootstrap's primary blue color */
+            color: white;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .chat-response {
+            background-color: #f8f9fa; /* Light grey background */
+            padding: 15px;
+            border-radius: 5px;
+            min-height: 100px;
+            margin-top: 20px;
+            font-size: 1.1em;
+            border: 1px solid #ced4da; /* Light grey border */
+        }
+        .accordion {
+            margin-top: 20px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            border: 1px solid #ced4da; /* Light grey border */
+        }
+        .accordion-button {
+            color: #333;
+            background-color: #e9ecef; /* Light grey background */
+        }
+        .accordion-body {
+            color: #333;
+        }
+        pre {
+            white-space: pre-wrap;
+            color: #007bff; /* Bootstrap's primary blue color */
+        }
+        .extra-info {
+            display: none;
+            background-color: #e9ecef; /* Light grey background */
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            border: 1px solid #ced4da; /* Light grey border */
+        }
+        .toggle-button {
+            background-color: #28a745; /* Bootstrap's success green color */
+            color: white;
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #555;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <!-- Bubbles -->
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+
+    <div class="container chat-container">
+        <h1 class="chat-heading">
+            <img src="/static/health.jpg" alt="App Logo"> <!-- Updated to serve from static folder -->
+            Bio Medical RAG App
+        </h1>
+
+        <div class="accordion" id="appDescriptionAccordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="descriptionHeading">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDescription" aria-expanded="true" aria-controls="collapseDescription">
+                        About This App
+                    </button>
+                </h2>
+                <div id="collapseDescription" class="accordion-collapse collapse" aria-labelledby="descriptionHeading" data-bs-parent="#appDescriptionAccordion">
+                    <div class="accordion-body">
+                        This app implements a RAG (Retrieval-Augmented Generation) model using an open-source stack. It utilizes BioMistral 7B for building, PubMedBert for embedding, Qdrant as a self-hosted vector database, and Langchain & Llama CPP for orchestration.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <textarea id="userInput" class="form-control chat-input" placeholder="Type your query here..."></textarea>
+                <button id="submitBtn" class="btn chat-button">Submit</button>
+                <div id="response" class="chat-response"></div>
+                <button id="toggleBtn" class="toggle-button">Show More Information</button>
+                <div id="extraInfo" class="extra-info"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        &copy; 2024 Bio Medical RAG App | All Rights Reserved
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('submitBtn').addEventListener('click', async function() {
+            var userInput = document.getElementById('userInput').value;
+            document.getElementById('response').innerHTML = '<p>Processing...</p>';
+            document.getElementById('extraInfo').style.display = 'none'; // Hide extra info on new query
+            const formData = new FormData();
+            formData.append('query', userInput); 
+            try {
+                const response = await fetch('/get_response', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const data = await response.json();
+                document.getElementById('response').innerHTML = `<p>${data.answer}</p>`;
+                document.getElementById('extraInfo').innerHTML = `<pre><b>Context: </b> ${data.source_document}</pre><br><pre><b>Source Document: </b> ${data.doc}</pre>`;
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('response').innerHTML = '<p>Error processing your request</p>';
+            }
+        });
+
+        document.getElementById('toggleBtn').addEventListener('click', function() {
+            var extraInfo = document.getElementById('extraInfo');
+            if (extraInfo.style.display === 'none') {
+                extraInfo.style.display = 'block';
+                document.getElementById('toggleBtn').innerText = 'Hide More Information';
+            } else {
+                extraInfo.style.display = 'none';
+                document.getElementById('toggleBtn').innerText = 'Show More Information';
+            }
+        });
+    </script>
+</body>
+</html>
