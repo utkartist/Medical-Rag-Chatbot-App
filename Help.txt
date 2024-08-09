@@ -1,0 +1,30 @@
+# Bio Medical RAG App - Installation and Help Guide
+
+## Table of Contents
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Running the Application](#running-the-application)
+- [Configuration](#configuration)
+- [Troubleshooting](#troubleshooting)
+- [Contributing](#contributing)
+
+## Prerequisites
+
+Before you can install and run the Bio Medical RAG App, make sure you have the following:
+
+1. **Python 3.8 or higher**: The app is built using Python, so you'll need to have it installed on your system.
+2. **Pip**: Python's package installer should be available to install the required dependencies.
+3. **Git**: You will need Git to clone the repository.
+4. **Qdrant**: A running instance of Qdrant (for vector storage and search).
+5. **Models**: Ensure you have access to the following models:
+   - **BioMistral 7B**: This model needs to be downloaded and configured.
+   - **PubMedBert**: Available via Hugging Face.
+
+## Installation
+
+Follow these steps to install the Bio Medical RAG App on your local machine:
+
+1. **Clone the Repository**: 
+   ```bash
+   git clone https://github.com/your-username/bio-medical-rag-app.git
+   cd bio-medical-rag-app
