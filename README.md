@@ -22,6 +22,11 @@ https://github.com/user-attachments/assets/3c06c147-5a91-4d8a-ba74-f0a617da9466
 - [Use Case](#use-case)
 - [Conclusion](#conclusion)
 
+
+![Screenshot 2024-08-10 032509](https://github.com/user-attachments/assets/2798f8e6-99b6-4373-ae52-1c44a73098ed)
+
+
+
 ## Overview
 The Bio Medical RAG App is an advanced application designed to implement Retrieval-Augmented Generation (RAG) in the biomedical field. The application utilizes two specific PDF documents to retrieve and generate contextually relevant information, offering a powerful tool for information retrieval in medical and research settings.
 
