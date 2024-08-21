@@ -1,5 +1,12 @@
 # Bio Medical RAG App
 
+
+
+https://github.com/user-attachments/assets/3c06c147-5a91-4d8a-ba74-f0a617da9466
+
+
+
+
 ## Table of Contents
 - [Overview](#overview)
 - [Technology Stack](#technology-stack)
